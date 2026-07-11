@@ -1,4 +1,4 @@
-package com.appsworld.recipes
+package com.appsworld.recipes.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
