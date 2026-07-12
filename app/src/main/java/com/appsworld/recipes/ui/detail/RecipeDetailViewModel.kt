@@ -2,7 +2,7 @@ package com.appsworld.recipes.ui.detail
 
 import androidx.lifecycle.ViewModel
 import com.appsworld.recipes.domain.model.Recipe
-import com.appsworld.recipes.domain.repository.RecipeRepository
+import com.appsworld.recipes.domain.repository.GetRecipe
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -18,7 +18,7 @@ data class RecipeDetailUiState(
 @HiltViewModel(assistedFactory = RecipeDetailViewModel.Factory::class)
 class RecipeDetailViewModel @AssistedInject constructor(
     @Assisted private val recipeId: String,
-    repository: RecipeRepository,
+    getRecipe: GetRecipe,
 ) : ViewModel() {
 
     @AssistedFactory
@@ -26,6 +26,6 @@ class RecipeDetailViewModel @AssistedInject constructor(
         fun create(recipeId: String): RecipeDetailViewModel
     }
 
-    private val _uiState = MutableStateFlow(RecipeDetailUiState(recipe = repository.getRecipe(recipeId)))
+    private val _uiState = MutableStateFlow(RecipeDetailUiState(recipe = getRecipe.getRecipe(recipeId)))
     val uiState: StateFlow<RecipeDetailUiState> = _uiState.asStateFlow()
 }
