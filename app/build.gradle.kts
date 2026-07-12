@@ -55,6 +55,8 @@ dependencies {
     implementation(libs.kotlinx.serialization.core)
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
     ksp(libs.hilt.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))

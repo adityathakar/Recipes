@@ -3,6 +3,10 @@ package com.appsworld.recipes.data
 import javax.inject.Inject
 import javax.inject.Singleton
 
+// Stand-in until every recipe has its own photo.
+private const val PLACEHOLDER_IMAGE_URL =
+    "https://www.coles.com.au/content/dam/coles/inspire-create/thumbnails/Tomato-and-bread-salad-480x288.jpg"
+
 @Singleton
 class RecipeRepository @Inject constructor() {
 
@@ -11,6 +15,7 @@ class RecipeRepository @Inject constructor() {
             id = "1",
             title = "Buttermilk Pancakes",
             description = "Fluffy stacks that come together in one bowl.",
+            imageUrl = PLACEHOLDER_IMAGE_URL,
             ingredients = listOf(
                 "2 cups flour",
                 "2 tbsp sugar",
@@ -24,6 +29,7 @@ class RecipeRepository @Inject constructor() {
             id = "2",
             title = "Spaghetti Carbonara",
             description = "Roman pasta with egg, cheese, and cured pork. No cream.",
+            imageUrl = PLACEHOLDER_IMAGE_URL,
             ingredients = listOf(
                 "400g spaghetti",
                 "150g guanciale",
@@ -37,6 +43,7 @@ class RecipeRepository @Inject constructor() {
             id = "3",
             title = "Guacamole",
             description = "Chunky, lime-forward, ready in ten minutes.",
+            imageUrl = PLACEHOLDER_IMAGE_URL,
             ingredients = listOf(
                 "3 ripe avocados",
                 "1 lime, juiced",
@@ -50,6 +57,7 @@ class RecipeRepository @Inject constructor() {
             id = "4",
             title = "Chicken Curry",
             description = "A weeknight curry built on a tomato and onion base.",
+            imageUrl = PLACEHOLDER_IMAGE_URL,
             ingredients = listOf(
                 "800g chicken thighs",
                 "2 onions, sliced",
@@ -64,6 +72,7 @@ class RecipeRepository @Inject constructor() {
             id = "5",
             title = "Miso Soup",
             description = "Dashi, miso, tofu, scallions. Nothing else needed.",
+            imageUrl = PLACEHOLDER_IMAGE_URL,
             ingredients = listOf(
                 "800ml dashi",
                 "3 tbsp white miso",
