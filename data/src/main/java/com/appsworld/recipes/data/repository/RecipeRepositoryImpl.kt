@@ -1,5 +1,7 @@
-package com.appsworld.recipes.data
+package com.appsworld.recipes.data.repository
 
+import com.appsworld.recipes.domain.model.Recipe
+import com.appsworld.recipes.domain.repository.RecipeRepository
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -8,7 +10,7 @@ private const val PLACEHOLDER_IMAGE_URL =
     "https://www.coles.com.au/content/dam/coles/inspire-create/thumbnails/Tomato-and-bread-salad-480x288.jpg"
 
 @Singleton
-class RecipeRepository @Inject constructor() {
+class RecipeRepositoryImpl @Inject constructor() : RecipeRepository {
 
     private val recipes = listOf(
         Recipe(
@@ -98,7 +100,7 @@ class RecipeRepository @Inject constructor() {
         ),
     )
 
-    fun getRecipes(): List<Recipe> = recipes
+    override fun getRecipes(): List<Recipe> = recipes
 
-    fun getRecipe(id: String): Recipe? = recipes.find { it.id == id }
+    override fun getRecipe(id: String): Recipe? = recipes.find { it.id == id }
 }

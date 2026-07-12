@@ -1,8 +1,8 @@
 package com.appsworld.recipes.ui.list
 
 import androidx.lifecycle.ViewModel
-import com.appsworld.recipes.data.Recipe
-import com.appsworld.recipes.data.RecipeRepository
+import com.appsworld.recipes.domain.model.Recipe
+import com.appsworld.recipes.domain.repository.RecipeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

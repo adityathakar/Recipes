@@ -45,7 +45,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.compose.dropUnlessResumed
 import coil3.compose.AsyncImage
 import com.appsworld.recipes.R
-import com.appsworld.recipes.data.Recipe
+import com.appsworld.recipes.domain.model.Recipe
 import com.appsworld.recipes.ui.formatDuration
 import com.appsworld.recipes.ui.spokenDuration
 import com.appsworld.recipes.ui.theme.RecipesTheme

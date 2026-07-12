@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.compose.dropUnlessResumed
 import coil3.compose.AsyncImage
-import com.appsworld.recipes.data.Recipe
+import com.appsworld.recipes.domain.model.Recipe
 import com.appsworld.recipes.ui.theme.BrandRed
 import com.appsworld.recipes.ui.theme.RecipesTheme
 

@@ -1,8 +1,8 @@
 package com.appsworld.recipes.ui.detail
 
 import androidx.lifecycle.ViewModel
-import com.appsworld.recipes.data.Recipe
-import com.appsworld.recipes.data.RecipeRepository
+import com.appsworld.recipes.domain.model.Recipe
+import com.appsworld.recipes.domain.repository.RecipeRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

@@ -1,4 +1,4 @@
-package com.appsworld.recipes.data
+package com.appsworld.recipes.domain.model
 
 data class Recipe(
     val id: String,
