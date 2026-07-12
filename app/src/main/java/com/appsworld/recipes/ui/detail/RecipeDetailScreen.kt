@@ -46,6 +46,8 @@ import androidx.lifecycle.compose.dropUnlessResumed
 import coil3.compose.AsyncImage
 import com.appsworld.recipes.R
 import com.appsworld.recipes.data.Recipe
+import com.appsworld.recipes.ui.formatDuration
+import com.appsworld.recipes.ui.spokenDuration
 import com.appsworld.recipes.ui.theme.RecipesTheme
 
 @Composable
@@ -188,14 +190,14 @@ private fun RecipeMetaRow(
         VerticalDivider()
         MetaItem(
             label = "Prep",
-            value = recipe.prepTime,
-            contentDescription = "Prep time, ${recipe.prepTime.spokenDuration()}",
+            value = recipe.prepTimeInMins.formatDuration(),
+            contentDescription = "Prep time, ${recipe.prepTimeInMins.spokenDuration()}",
         )
         VerticalDivider()
         MetaItem(
             label = "Cooking",
-            value = recipe.cookTime,
-            contentDescription = "Cooking time, ${recipe.cookTime.spokenDuration()}",
+            value = recipe.cookTimeInMins.formatDuration(),
+            contentDescription = "Cooking time, ${recipe.cookTimeInMins.spokenDuration()}",
         )
     }
 }
@@ -253,25 +255,14 @@ private fun IngredientRow(
     }
 }
 
-/** Expands a compact duration such as "4h 30m" so TalkBack says "4 hours 30 minutes". */
-private fun String.spokenDuration(): String {
-    val hours = Regex("""(\d+)\s*h""").find(this)?.groupValues?.get(1)?.toIntOrNull() ?: 0
-    val minutes = Regex("""(\d+)\s*m""").find(this)?.groupValues?.get(1)?.toIntOrNull() ?: 0
-    val parts = buildList {
-        if (hours > 0) add("$hours ${if (hours == 1) "hour" else "hours"}")
-        if (minutes > 0) add("$minutes ${if (minutes == 1) "minute" else "minutes"}")
-    }
-    return if (parts.isEmpty()) "0 minutes" else parts.joinToString(" ")
-}
-
 private val sampleRecipe = Recipe(
     id = "1",
     title = "Pork, fennel and sage ragu with polenta",
     description = "Put your slow cooker to work and make this mouth-watering pork ragu. " +
             "Served with fluffy polenta, it's a guaranteed crowd-pleaser.",
     numOfServes = 8,
-    prepTime = "15m",
-    cookTime = "4h 30m",
+    prepTimeInMins = 15,
+    cookTimeInMins = 270,
     imageUrl = "",
     ingredients = listOf(
         "1.2kg Coles Australian Pork Slow Cook Scotch Roast, cut into 10cm pieces",

@@ -5,8 +5,8 @@ data class Recipe(
     val title: String,
     val description: String,
     val numOfServes: Int,
-    val prepTime: String,
-    val cookTime: String,
+    val prepTimeInMins: Int,
+    val cookTimeInMins: Int,
     val imageUrl: String,
     val ingredients: List<String>,
 )
