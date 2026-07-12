@@ -15,6 +15,9 @@ class RecipeRepository @Inject constructor() {
             id = "1",
             title = "Buttermilk Pancakes",
             description = "Fluffy stacks that come together in one bowl.",
+            numOfServes = 4,
+            prepTime = "10m",
+            cookTime = "15m",
             imageUrl = PLACEHOLDER_IMAGE_URL,
             ingredients = listOf(
                 "2 cups flour",
@@ -29,6 +32,9 @@ class RecipeRepository @Inject constructor() {
             id = "2",
             title = "Spaghetti Carbonara",
             description = "Roman pasta with egg, cheese, and cured pork. No cream.",
+            numOfServes = 4,
+            prepTime = "10m",
+            cookTime = "20m",
             imageUrl = PLACEHOLDER_IMAGE_URL,
             ingredients = listOf(
                 "400g spaghetti",
@@ -43,6 +49,9 @@ class RecipeRepository @Inject constructor() {
             id = "3",
             title = "Guacamole",
             description = "Chunky, lime-forward, ready in ten minutes.",
+            numOfServes = 6,
+            prepTime = "10m",
+            cookTime = "0m",
             imageUrl = PLACEHOLDER_IMAGE_URL,
             ingredients = listOf(
                 "3 ripe avocados",
@@ -57,6 +66,9 @@ class RecipeRepository @Inject constructor() {
             id = "4",
             title = "Chicken Curry",
             description = "A weeknight curry built on a tomato and onion base.",
+            numOfServes = 6,
+            prepTime = "20m",
+            cookTime = "45m",
             imageUrl = PLACEHOLDER_IMAGE_URL,
             ingredients = listOf(
                 "800g chicken thighs",
@@ -72,6 +84,9 @@ class RecipeRepository @Inject constructor() {
             id = "5",
             title = "Miso Soup",
             description = "Dashi, miso, tofu, scallions. Nothing else needed.",
+            numOfServes = 4,
+            prepTime = "5m",
+            cookTime = "10m",
             imageUrl = PLACEHOLDER_IMAGE_URL,
             ingredients = listOf(
                 "800ml dashi",

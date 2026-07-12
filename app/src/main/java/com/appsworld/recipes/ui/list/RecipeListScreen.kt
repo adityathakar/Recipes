@@ -39,14 +39,12 @@ import com.appsworld.recipes.ui.theme.RecipesTheme
 
 @Composable
 fun RecipeListScreen(
-    modifier: Modifier = Modifier,
     viewModel: RecipeListViewModel,
     onRecipeClick: (String) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     RecipeListScreen(
-        modifier = modifier,
         uiState = uiState,
         onRecipeClick = onRecipeClick,
     )
@@ -120,6 +118,9 @@ private val sampleRecipes = listOf(
         id = "1",
         title = "Curtis Stone's tomato and bread salad with BBQ eggplant and capsicum",
         description = "",
+        numOfServes = 4,
+        prepTime = "20m",
+        cookTime = "15m",
         imageUrl = "",
         ingredients = emptyList(),
     ),
@@ -127,6 +128,9 @@ private val sampleRecipes = listOf(
         id = "2",
         title = "Pork, fennel and sage ragu with polenta",
         description = "",
+        numOfServes = 8,
+        prepTime = "15m",
+        cookTime = "4h 30m",
         imageUrl = "",
         ingredients = emptyList(),
     ),
@@ -134,6 +138,9 @@ private val sampleRecipes = listOf(
         id = "3",
         title = "Apple and kale panzanella",
         description = "",
+        numOfServes = 6,
+        prepTime = "15m",
+        cookTime = "10m",
         imageUrl = "",
         ingredients = emptyList(),
     ),
@@ -141,6 +148,9 @@ private val sampleRecipes = listOf(
         id = "4",
         title = "Tasia and Gracia's miso steak tacos with kaleslaw",
         description = "",
+        numOfServes = 4,
+        prepTime = "25m",
+        cookTime = "20m",
         imageUrl = "",
         ingredients = emptyList(),
     ),
