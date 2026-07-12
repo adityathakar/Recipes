@@ -38,6 +38,7 @@ fun RecipesApp(modifier: Modifier = Modifier) {
                     viewModel = hiltViewModel<RecipeDetailViewModel, RecipeDetailViewModel.Factory>(
                         creationCallback = { factory -> factory.create(key.id) },
                     ),
+                    onBack = { backStack.removeLastOrNull() },
                 )
             }
         },
