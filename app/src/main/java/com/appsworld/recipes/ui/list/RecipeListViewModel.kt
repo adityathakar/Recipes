@@ -3,7 +3,7 @@ package com.appsworld.recipes.ui.list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.appsworld.recipes.domain.model.Recipe
-import com.appsworld.recipes.domain.repository.GetRecipes
+import com.appsworld.recipes.domain.usecase.GetRecipes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

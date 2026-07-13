@@ -2,7 +2,7 @@ package com.appsworld.recipes.ui.detail
 
 import com.appsworld.recipes.MainDispatcherRule
 import com.appsworld.recipes.domain.model.Recipe
-import com.appsworld.recipes.domain.repository.GetRecipe
+import com.appsworld.recipes.domain.usecase.GetRecipe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest

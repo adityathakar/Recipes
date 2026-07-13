@@ -3,7 +3,7 @@ package com.appsworld.recipes.ui.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.appsworld.recipes.domain.model.Recipe
-import com.appsworld.recipes.domain.repository.GetRecipe
+import com.appsworld.recipes.domain.usecase.GetRecipe
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

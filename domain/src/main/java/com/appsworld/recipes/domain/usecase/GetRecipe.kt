@@ -1,4 +1,4 @@
-package com.appsworld.recipes.domain.repository
+package com.appsworld.recipes.domain.usecase
 
 import com.appsworld.recipes.domain.model.Recipe
 
