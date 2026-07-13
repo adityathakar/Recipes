@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -86,24 +87,38 @@ private fun RecipeDetailScreen(
             )
         },
     ) { innerPadding ->
-        val recipe = uiState.recipe
-        if (recipe == null) {
-            Box(
-                modifier = Modifier
-                    .padding(innerPadding)
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(
-                    text = "Recipe not found",
-                    style = MaterialTheme.typography.bodyLarge,
+        when (uiState) {
+            RecipeDetailUiState.Loading -> {
+                Box(
+                    modifier = Modifier
+                        .padding(innerPadding)
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    CircularProgressIndicator()
+                }
+            }
+
+            is RecipeDetailUiState.Success -> {
+                RecipeDetail(
+                    modifier = Modifier.padding(innerPadding),
+                    recipe = uiState.recipe,
                 )
             }
-        } else {
-            RecipeDetail(
-                modifier = Modifier.padding(innerPadding),
-                recipe = recipe,
-            )
+
+            is RecipeDetailUiState.Error -> {
+                Box(
+                    modifier = Modifier
+                        .padding(innerPadding)
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = uiState.message,
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                }
+            }
         }
     }
 }
@@ -279,7 +294,7 @@ private val sampleRecipe = Recipe(
 private fun RecipeDetailScreenPreview() {
     RecipesTheme {
         RecipeDetailScreen(
-            uiState = RecipeDetailUiState(recipe = sampleRecipe),
+            uiState = RecipeDetailUiState.Success(recipe = sampleRecipe),
             onBack = {},
         )
     }
@@ -290,7 +305,7 @@ private fun RecipeDetailScreenPreview() {
 private fun RecipeDetailScreenLandscapePreview() {
     RecipesTheme {
         RecipeDetailScreen(
-            uiState = RecipeDetailUiState(recipe = sampleRecipe),
+            uiState = RecipeDetailUiState.Success(recipe = sampleRecipe),
             onBack = {},
         )
     }
@@ -301,7 +316,29 @@ private fun RecipeDetailScreenLandscapePreview() {
 private fun RecipeDetailScreenLargeFontPreview() {
     RecipesTheme {
         RecipeDetailScreen(
-            uiState = RecipeDetailUiState(recipe = sampleRecipe),
+            uiState = RecipeDetailUiState.Success(recipe = sampleRecipe),
+            onBack = {},
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun RecipeDetailScreenLoadingPreview() {
+    RecipesTheme {
+        RecipeDetailScreen(
+            uiState = RecipeDetailUiState.Loading,
+            onBack = {},
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun RecipeDetailScreenErrorPreview() {
+    RecipesTheme {
+        RecipeDetailScreen(
+            uiState = RecipeDetailUiState.Error(message = "Recipe not found"),
             onBack = {},
         )
     }

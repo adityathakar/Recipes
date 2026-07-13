@@ -101,7 +101,7 @@ class RecipeRepositoryImpl @Inject constructor() : GetRecipes, GetRecipe {
         ),
     )
 
-    override fun getRecipes(): List<Recipe> = recipes
+    override suspend fun getRecipes(): List<Recipe> = recipes
 
-    override fun getRecipe(id: String): Recipe? = recipes.find { it.id == id }
+    override suspend fun getRecipe(id: String): Recipe? = recipes.find { it.id == id }
 }

@@ -2,6 +2,7 @@ package com.appsworld.recipes.ui.list
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
@@ -12,6 +13,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -19,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -61,18 +64,47 @@ private fun RecipeListScreen(
         modifier = modifier.fillMaxSize(),
         topBar = { TopAppBar(title = { Text("Recipes") }) },
     ) { innerPadding ->
-        LazyVerticalGrid(
-            columns = GridCells.Adaptive(minSize = 300.dp),
-            modifier = Modifier.padding(innerPadding),
-            contentPadding = PaddingValues(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-            verticalArrangement = Arrangement.spacedBy(24.dp),
-        ) {
-            items(uiState.recipes, key = { it.id }) { recipe ->
-                RecipeCard(
-                    recipe = recipe,
-                    onClick = dropUnlessResumed { onRecipeClick(recipe.id) },
-                )
+        when (uiState) {
+            RecipeListUiState.Loading -> {
+                Box(
+                    modifier = Modifier
+                        .padding(innerPadding)
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    CircularProgressIndicator()
+                }
+            }
+
+            is RecipeListUiState.Success -> {
+                LazyVerticalGrid(
+                    columns = GridCells.Adaptive(minSize = 300.dp),
+                    modifier = Modifier.padding(innerPadding),
+                    contentPadding = PaddingValues(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(24.dp),
+                ) {
+                    items(uiState.recipes, key = { it.id }) { recipe ->
+                        RecipeCard(
+                            recipe = recipe,
+                            onClick = dropUnlessResumed { onRecipeClick(recipe.id) },
+                        )
+                    }
+                }
+            }
+
+            is RecipeListUiState.Error -> {
+                Box(
+                    modifier = Modifier
+                        .padding(innerPadding)
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = uiState.message,
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                }
             }
         }
     }
@@ -161,7 +193,29 @@ private val sampleRecipes = listOf(
 private fun RecipeListScreenPreview() {
     RecipesTheme {
         RecipeListScreen(
-            uiState = RecipeListUiState(recipes = sampleRecipes),
+            uiState = RecipeListUiState.Success(recipes = sampleRecipes),
+            onRecipeClick = {},
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun RecipeListScreenLoadingPreview() {
+    RecipesTheme {
+        RecipeListScreen(
+            uiState = RecipeListUiState.Loading,
+            onRecipeClick = {},
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun RecipeListScreenErrorPreview() {
+    RecipesTheme {
+        RecipeListScreen(
+            uiState = RecipeListUiState.Error(message = "Couldn't load recipes"),
             onRecipeClick = {},
         )
     }

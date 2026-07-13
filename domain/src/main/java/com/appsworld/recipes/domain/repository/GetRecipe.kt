@@ -4,5 +4,5 @@ import com.appsworld.recipes.domain.model.Recipe
 
 fun interface GetRecipe {
 
-    fun getRecipe(id: String): Recipe?
+    suspend fun getRecipe(id: String): Recipe?
 }
