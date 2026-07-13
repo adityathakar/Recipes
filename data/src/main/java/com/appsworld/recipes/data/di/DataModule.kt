@@ -1,5 +1,7 @@
 package com.appsworld.recipes.data.di
 
+import com.appsworld.recipes.data.datastore.RecipeDataStore
+import com.appsworld.recipes.data.datastore.RecipeDataStoreImpl
 import com.appsworld.recipes.data.repository.RecipeRepositoryImpl
 import com.appsworld.recipes.domain.repository.GetRecipe
 import com.appsworld.recipes.domain.repository.GetRecipes
@@ -17,4 +19,7 @@ abstract class DataModule {
 
     @Binds
     abstract fun bindGetRecipe(impl: RecipeRepositoryImpl): GetRecipe
+
+    @Binds
+    abstract fun bindRecipeDataStore(impl: RecipeDataStoreImpl): RecipeDataStore
 }
