@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 data class RecipeData(
     @SerialName("dynamicTitle") val title: String,
     @SerialName("dynamicDescription") val description: String,
-    @SerialName("dynamicThumbnail") val imageUrl: String,
+    @SerialName("dynamicThumbnail") val imageUrl: String? = null,
     @SerialName("recipeDetails") val details: RecipeDetailsData,
     val ingredients: List<IngredientData>,
 )

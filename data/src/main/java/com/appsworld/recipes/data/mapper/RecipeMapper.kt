@@ -15,6 +15,6 @@ private fun RecipeData.toRecipe(id: String) = Recipe(
     numOfServes = details.numOfServes,
     prepTimeInMins = details.prepTimeInMins,
     cookTimeInMins = details.cookTimeInMins,
-    imageUrl = IMAGE_BASE_URL + imageUrl,
+    imageUrl = imageUrl?.let { IMAGE_BASE_URL + it },
     ingredients = ingredients.map { it.name },
 )

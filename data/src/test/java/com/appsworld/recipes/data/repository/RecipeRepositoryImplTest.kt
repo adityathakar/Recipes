@@ -51,6 +51,13 @@ class RecipeRepositoryImplTest {
     }
 
     @Test
+    fun `leaves the url unset when there is no thumbnail`() = runTest {
+        val dataStore = RecipeDataStore { listOf(recipeData(title = "First", imageUrl = null)) }
+
+        assertNull(RecipeRepositoryImpl(dataStore).getRecipes().first().imageUrl)
+    }
+
+    @Test
     fun `finds the recipe with the given id`() = runTest {
         assertEquals("Second", repository.getRecipe("1")?.title)
     }
@@ -60,10 +67,13 @@ class RecipeRepositoryImplTest {
         assertNull(repository.getRecipe("nope"))
     }
 
-    private fun recipeData(title: String) = RecipeData(
+    private fun recipeData(
+        title: String,
+        imageUrl: String? = "/content/dam/coles/thumbnail.jpg",
+    ) = RecipeData(
         title = title,
         description = "A description",
-        imageUrl = "/content/dam/coles/thumbnail.jpg",
+        imageUrl = imageUrl,
         details = RecipeDetailsData(numOfServes = 4, prepTimeInMins = 10, cookTimeInMins = 20),
         ingredients = listOf(IngredientData("2 eggs"), IngredientData("1 tsp salt")),
     )

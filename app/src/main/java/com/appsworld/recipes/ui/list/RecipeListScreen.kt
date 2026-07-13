@@ -125,6 +125,7 @@ private fun RecipeCard(
                 .aspectRatio(5f / 3f)
                 .clip(RoundedCornerShape(4.dp)),
             placeholder = ColorPainter(Color(0xFFE8E8E8)),
+            fallback = ColorPainter(Color(0xFFE8E8E8)),
             contentScale = ContentScale.Crop,
         )
         Text(

@@ -7,6 +7,6 @@ data class Recipe(
     val numOfServes: Int,
     val prepTimeInMins: Int,
     val cookTimeInMins: Int,
-    val imageUrl: String,
+    val imageUrl: String?,
     val ingredients: List<String>,
 )
