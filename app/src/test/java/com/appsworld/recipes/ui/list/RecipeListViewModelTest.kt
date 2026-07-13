@@ -2,7 +2,7 @@ package com.appsworld.recipes.ui.list
 
 import com.appsworld.recipes.MainDispatcherRule
 import com.appsworld.recipes.domain.model.Recipe
-import com.appsworld.recipes.domain.usecase.GetRecipes
+import com.appsworld.recipes.domain.usecase.GetRecipesSortedByTime
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
@@ -19,14 +19,14 @@ class RecipeListViewModelTest {
 
     @Test
     fun `is loading before the recipes arrive`() = runTest {
-        val viewModel = RecipeListViewModel(GetRecipes { recipes })
+        val viewModel = RecipeListViewModel(GetRecipesSortedByTime { recipes })
 
         assertEquals(RecipeListUiState.Loading, viewModel.uiState.value)
     }
 
     @Test
     fun `emits the loaded recipes`() = runTest {
-        val viewModel = RecipeListViewModel(GetRecipes { recipes })
+        val viewModel = RecipeListViewModel(GetRecipesSortedByTime { recipes })
 
         advanceUntilIdle()
 
@@ -35,7 +35,7 @@ class RecipeListViewModelTest {
 
     @Test
     fun `emits an error when loading fails`() = runTest {
-        val viewModel = RecipeListViewModel(GetRecipes { throw IOException("no assets") })
+        val viewModel = RecipeListViewModel(GetRecipesSortedByTime { throw IOException("no assets") })
 
         advanceUntilIdle()
 

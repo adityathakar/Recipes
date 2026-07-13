@@ -3,7 +3,7 @@ package com.appsworld.recipes.ui.list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.appsworld.recipes.domain.model.Recipe
-import com.appsworld.recipes.domain.usecase.GetRecipes
+import com.appsworld.recipes.domain.usecase.GetRecipesSortedByTime
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,7 +22,7 @@ sealed interface RecipeListUiState {
 
 @HiltViewModel
 class RecipeListViewModel @Inject constructor(
-    private val getRecipes: GetRecipes,
+    private val getRecipesSortedByTime: GetRecipesSortedByTime,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<RecipeListUiState>(RecipeListUiState.Loading)
@@ -31,7 +31,7 @@ class RecipeListViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             _uiState.value = try {
-                RecipeListUiState.Success(getRecipes.getRecipes())
+                RecipeListUiState.Success(getRecipesSortedByTime.getRecipesSortedByTime())
             } catch (e: Exception) {
                 RecipeListUiState.Error("Couldn't load recipes")
             }
